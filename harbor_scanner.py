@@ -31,7 +31,7 @@ if scanInitResp.status_code != 202:
 ## Checks scanner status ##
 urlScanOverview = urlArtifact + artifactReference + '?with_scan_overview=true'
 scanStatus = 'Pending'
-maxApiCall = 10
+maxApiCall = 5
 
 while scanStatus != 'Success':
     scanOverviewResp = requests.get(urlScanOverview, auth=(username, password))
@@ -45,6 +45,6 @@ while scanStatus != 'Success':
         sys.exit(-1)
     else:
         maxApiCall -= 1
-        time.sleep(5)
+        time.sleep(4)
 
 print(json.dumps(scanOverviewResult['summary'], indent=4))
